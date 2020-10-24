@@ -10,9 +10,10 @@ function botOauth() {
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 // Settings
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-const requireStreaming = true; //Chatbot will only connect if stream is live
-
-
+const requireStreaming = false; // Chatbot will only connect if stream is live
+const connectOnLoad = false; // By default, the chatbot automatically connects and disconnects when the OBS source is active/inactive. 
+                            // This setting allows the chatbot to connect on pageload even if the source is not visible. 
+                            // The best use case for this would be that you want to use the "Shutdown source when not visible" checkbox instead.
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 // Bot Logic
@@ -32,8 +33,12 @@ const client = new tmi.Client({
     channels: [username()]
 });
 
+if(connectOnLoad){
+    connect();
+}
+
 window.addEventListener('obsSourceActiveChanged', function (event) {
-    if (event.detail.active) {
+    if (event.detail.active && client.readyState() === "CLOSED") {
         connect();
     }
     else {
@@ -52,7 +57,6 @@ window.addEventListener('obsStreamingStopped', function (event) {
 client.on("connected", (address, port) => {
     client.say(username(), "STT Chatbot Connected - transcriptions ON. !sttoff to disconnect manually.");
 });
-
 
 client.on("chat", (channel, userstate, message, self) => {
     if (message === "!sttoff" && (userstate.mod || self || userstate.username.toLowerCase() === username().toLowerCase())) {
