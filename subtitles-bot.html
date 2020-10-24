@@ -1,0 +1,64 @@
+<title>Chatbot for Twitch Subtitles with OBS Browser Source Plugin</title>
+<meta charset="utf-8">
+<link rel="icon" type="image/png" href="/media/giphy-voice-twithc-obs-plugin-icon.png" />
+<link rel="stylesheet" href="css/subtitles.css" />
+
+<link id="favicon" rel="shortcut icon" type="image/png"
+    href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==">
+
+<span id="status" class="badge badge--danger">STT Chatbot OFF</span>
+<script src="js/request.js"></script>
+<script src="js/username.js"></script>
+<script src="js/tmi.min.js"></script>
+<script src="js/bot.js"></script>
+<style>
+    .badge {
+        box-sizing: border-box;
+        display: inline-block;
+        background-color: #2c3e50;
+        color: #ffffff;
+
+        border-radius: 2rem;
+        text-align: center;
+
+        font-size: 2rem;
+        font-weight: 400;
+        padding: .05rem .8rem .1rem;
+        line-height: inherit;
+    }
+
+    .badge--line {
+        background-color: transparent;
+        color: #95a5a6;
+        box-shadow: 0 0 0 1px #95a5a6;
+    }
+
+    .badge--danger {
+        background-color: #e74c3c;
+    }
+
+    .badge--success {
+        background-color: #2ecc71;
+    }
+
+    .badge--small {
+        font-size: 1.2rem;
+        padding: .1rem .65rem .2rem;
+    }
+
+    html,
+    body {
+        align-items: center;
+        justify-content: space-around;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    .container {
+        box-sizing: border-box;
+        padding: 1rem;
+    }
+
+    .container.badge {
+        margin: .5rem;
+    }
+</style>
