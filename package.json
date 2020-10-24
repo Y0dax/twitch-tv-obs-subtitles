@@ -15,9 +15,7 @@
     "obs",
     "twitch"
   ],
-  "bugs": {
-    "url": "https://github.com/stephenlb/twitch-tv-obs-subtitles/issues"
-  },
+  "bugs": { "url": "https://github.com/stephenlb/twitch-tv-obs-subtitles/issues" },
   "dependencies": {
     "gulp": "4.0.0",
     "gulp-htmlmin": "4.0.0",
