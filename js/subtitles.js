@@ -8,7 +8,7 @@ const defaultPubkey   = 'pub-c-fd9b97a4-7b78-4ae1-a21e-3614f2b6debe';
 const defaultChannel  = uuid();
 const defaultMaxWords = 250;
 const defaultStyle    = '';
-const clearTime       = +uripart('cleartime') || 4; // Seconds
+const clearTime       = +uripart('cleartime') || 2.5; // Seconds
 const introText       = uripart('introtext')  || 'Start talking.';
 const continuous      = uripart('continuous') || 'on';
 const mic             = uripart('mic')        || 'on';
@@ -18,6 +18,7 @@ const pubkey          = uripart('pubkey')     || defaultPubkey;
 const channel         = uripart('channel')    || username() || askchannel() || defaultChannel;
 const maxWords        = uripart('maxwords')   || defaultMaxWords;
 let   subtitleStyle   = uripart('style')      || defaultStyle;
+const botChannel = new BroadcastChannel('bot_bus');
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 // Ask for Channel
@@ -97,6 +98,7 @@ function updateSubtitles(speech) {
     // Clear Text after moments of silence.
     clearTimeout(updateSubtitles.ival);
     updateSubtitles.ival = setTimeout( async ival => {
+            botChannel.postMessage(speech.phrase); //Broadcast message for bot to pick up if running.
             subtitles.innerHTML = ' ';
             spoken.listen.stop();
             listen();

@@ -210,6 +210,12 @@ cd twitch-tv-obs-subtitles
 python -m SimpleHTTPServer 8080
 ```
 
+> **NOTE**: For python3+ use 
+>   ```shell
+>   python -m http.server 8080 --bind 127.0.0.1
+>   ```
+> and replace below guidance of 0.0.0.0 with 127.0.0.1
+
 > If the `cd` command fails, you need to know where the folder is located.
 > You must `cd` to the folder `twitch-tv-obs-subtitles`.
 > It may be in your `Downloads` folder: `cd Downloads/twitch-tv-obs-subtitles`.
@@ -245,6 +251,22 @@ If you've made a mistake start over from the beginning
 it won't hurt to repeat any of the steps.
 However you may run into issues.
 That's why we've included a second option that may work better for you.
+
+## Configuring the STT Chatbot to send your subtitles to twitch chat
+
+In order to use the chatbot, you will need to use the above configuration of running 
+Twitch.TV Subtitles from Local Files on your Hard Drive (Secure method)
+
+After that is complete follow these steps to configure and use the bot.
+
+#### 1.) Edit bot.js with the bots (or your accounts username and oauth key from the provided link)
+
+#### 2.) Edit settings in bot.js as desired.
+
+#### 3.) Add a new browser source in OBS and set the source to http://0.0.0.0:8080/subtitles-bot.html (or 127.0.0.1 if using python3)
+
+The chatbot is now setup! When the source is made visible, it will connect to the twitch chat and await STT input. It automatically disconnects from twitch chat when the source is not visible.
+By default, it will not connect if you are not currently streaming (for a bit a protection from accidental STT). This can be changed in bot.js settings.
 
 ## Alternate: Running Twitch.TV Subtitles from Local Files on your Hard Drive
 
