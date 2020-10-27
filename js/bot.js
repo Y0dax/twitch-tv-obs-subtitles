@@ -10,7 +10,7 @@ function botOauth() {
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 // Settings
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-const requireStreaming = false; // Chatbot will only connect if stream is live
+const requireStreaming = true; // Chatbot will only connect if stream is live
 const connectOnLoad = false; // By default, the chatbot automatically connects and disconnects when the OBS source is active/inactive. 
                             // This setting allows the chatbot to connect on pageload even if the source is not visible. 
                             // The best use case for this would be that you want to use the "Shutdown source when not visible" checkbox instead.
